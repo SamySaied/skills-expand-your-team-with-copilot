@@ -31,15 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize dark mode
   function initializeDarkMode() {
+    if (!themeIcon) return;
+    
     const savedTheme = localStorage.getItem("theme");
+    // Apply dark mode if explicitly set, default to light mode
     if (savedTheme === "dark") {
       document.body.classList.add("dark-mode");
       themeIcon.textContent = "☀️";
+    } else {
+      // Ensure light mode is default
+      document.body.classList.remove("dark-mode");
+      themeIcon.textContent = "🌙";
     }
   }
 
   // Toggle dark mode
   function toggleDarkMode() {
+    if (!themeIcon) return;
+    
     document.body.classList.toggle("dark-mode");
     const isDarkMode = document.body.classList.contains("dark-mode");
     
@@ -51,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Event listener for theme toggle
-  themeToggle.addEventListener("click", toggleDarkMode);
+  if (themeToggle) {
+    themeToggle.addEventListener("click", toggleDarkMode);
+  }
 
   // Activity categories with corresponding colors
   const activityTypes = {
