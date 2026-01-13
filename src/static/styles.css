@@ -395,6 +395,68 @@ button {
   }
 }
 
+/* Social Share Buttons */
+.share-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.share-btn {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 6px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
+}
+
+.share-btn .share-icon {
+  display: block;
+  line-height: 1;
+}
+
+.share-twitter:hover {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+  color: white;
+}
+
+.share-facebook:hover {
+  background-color: #4267B2;
+  border-color: #4267B2;
+  color: white;
+}
+
+.share-email:hover {
+  background-color: #EA4335;
+  border-color: #EA4335;
+  color: white;
+}
+
+.share-copy:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
 /* Modal animation */
 .modal {
   position: fixed;
