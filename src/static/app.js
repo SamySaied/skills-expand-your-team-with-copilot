@@ -51,6 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
     weekend: { days: ["Saturday", "Sunday"] }, // Weekend days
   };
 
+  // Helper function to escape HTML for security
+  function escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return unsafe;
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   // Initialize filters from active elements
   function initializeFilters() {
     // Initialize day filter
@@ -522,19 +533,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create social sharing buttons
     const shareButtons = `
       <div class="share-buttons">
-        <button class="share-btn share-twitter tooltip" data-activity="${name}" data-description="${details.description}" data-schedule="${formattedSchedule}">
+        <button class="share-btn share-twitter tooltip" data-activity="${escapeHtml(name)}" data-description="${escapeHtml(details.description)}" data-schedule="${escapeHtml(formattedSchedule)}">
           <span class="share-icon">🐦</span>
           <span class="tooltip-text">Share on Twitter</span>
         </button>
-        <button class="share-btn share-facebook tooltip" data-activity="${name}" data-description="${details.description}" data-schedule="${formattedSchedule}">
+        <button class="share-btn share-facebook tooltip" data-activity="${escapeHtml(name)}" data-description="${escapeHtml(details.description)}" data-schedule="${escapeHtml(formattedSchedule)}">
           <span class="share-icon">📘</span>
           <span class="tooltip-text">Share on Facebook</span>
         </button>
-        <button class="share-btn share-email tooltip" data-activity="${name}" data-description="${details.description}" data-schedule="${formattedSchedule}">
+        <button class="share-btn share-email tooltip" data-activity="${escapeHtml(name)}" data-description="${escapeHtml(details.description)}" data-schedule="${escapeHtml(formattedSchedule)}">
           <span class="share-icon">✉️</span>
           <span class="tooltip-text">Share via Email</span>
         </button>
-        <button class="share-btn share-copy tooltip" data-activity="${name}" data-description="${details.description}" data-schedule="${formattedSchedule}">
+        <button class="share-btn share-copy tooltip" data-activity="${escapeHtml(name)}" data-description="${escapeHtml(details.description)}" data-schedule="${escapeHtml(formattedSchedule)}">
           <span class="share-icon">🔗</span>
           <span class="tooltip-text">Copy Link</span>
         </button>
@@ -891,9 +902,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Social sharing functions
   function getShareUrl(activityName) {
-    // Create a URL that points to the activities page
-    // In a real app, this could link to a specific activity detail page
-    return `${window.location.origin}/static/index.html`;
+    // Use current URL to avoid hardcoding paths
+    // This makes the code more flexible and works with different URL structures
+    return window.location.href.split('#')[0].split('?')[0];
   }
 
   function getShareText(button) {
